@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApiDemoG.Data;
+using WebApiDemoG.Formatters;
 using WebApiDemoG.Repositories.Abstract;
 using WebApiDemoG.Repositories.Concrete;
 using WebApiDemoG.Services.Abstract;
@@ -8,6 +9,11 @@ using WebApiDemoG.Services.Concrete;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddControllers(options =>
+{
+    options.OutputFormatters.Add(new VCardOutputFormatter());
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
